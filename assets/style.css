@@ -52,17 +52,17 @@ textarea{
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #7eb651;
   color: white;
   border-bottom: 1px solid #ffffff;
 }
 
 .saveBtn {
-  border-left: 3px solid #5793b6;
+  border-left: 3px solid #61a4ca;
   border-bottom: 1px solid #ffffff ;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #7a9caf;
+  background-color: #9cc5dd;
   color: white;
 }
 
@@ -80,3 +80,4 @@ textarea{
 .hour-box, textarea, .save-box {
   min-height: 80px;
 }
+
