@@ -7,13 +7,12 @@ new Array(9).fill().map((acc, index) => {
 });
 
 // generate heading stating date and time at bottom of header
-var dayHeading = document.querySelector("#currentDay");
+
 var today = moment.utc().format("[Today is] dddd h:mmA"); ;
-dayHeading.textContent= today;
-var container = document.querySelector("main");
+$("#currentDay").text(today);
 // generate rows
-var hourRow = document.createElement("div");
-hourRow.classList = ("row");
+
+var hourRow = $("<div>").addClass("row");
 
 // set this moment equal to var now
 var now = moment().format('HHA');
@@ -21,51 +20,40 @@ var now = moment().format('HHA');
 var userEvents = [];
 
 // loop through the hours of the day and append a div for each with the time, space to add events, and a button to save events
+
 for (var i=0; i<hours.length; i++){
     var hourI = hours[i];
     var currentHour = moment(hourI, 'HHA').format('hA')
     var time = hours[i];
-   
-    var hourBox = document.createElement("div");
-    var textArea = document.createElement("div");
-    var saveButton = document.createElement("div");
-    container.appendChild(hourRow)
-    hourRow.appendChild(hourBox);
-    hourRow.appendChild(textArea);
-    hourRow.appendChild(saveButton);
-    hourBox.classList = ("col-2  border-left-0 hour-box d-flex justify-content-center align-items-center hour block");
-    textArea.classList = ("col-8 d-flex justify-content-center align-items-center text-area");
-    saveButton.classList = ("col-2 rounded-right saveBtn d-flex justify-content-center align-items-center");    
-    var iconSpan = document.createElement("i");
-    saveButton.appendChild(iconSpan);
-    iconSpan.classList = "fa fa-check-circle"; 
-    hourBox.innerHTML= currentHour;
+    var text = $(this)
+    .text()
+    .trim();
+    var hourBox = $("<div>").addClass("col-2  border-left-0 hour-box d-flex justify-content-center align-items-center hour block").text(currentHour);
 
-// add events
-    var eventInput = document.createElement('input');
-    eventInput.classList ="form-control input-btn-focus-blur ";
-    $(eventInput).attr("type", "text");
-    $(eventInput).attr("id", "userinput");
-    $(eventInput).attr("value", "");
-    $(eventInput).attr("placeholder", "type here");
-    var inputClick = () => {
-        textArea.append(eventInput);
-        console.log("woo")
-    }
+    var textArea = $("<textarea>")
+    .addClass("col-8 d-flex justify-content-center align-items-center text-area").attr("type", "text").val("");
 
-    // on click generate input
-    $(textArea).click(function() {
-        textArea.append(eventInput)
-    })
 
-    // save event input
+    var saveButton = $("<div>")
+    .addClass("col-2 rounded-right saveBtn d-flex justify-content-center align-items-center");
+    
+    $(".container").append(hourRow)
+    $(hourRow).append(hourBox);
+    $(hourRow).append(textArea);
+
+    $(hourRow).append(saveButton);
+    
+    var iconSpan = $("<i>").addClass("fa fa-check-circle");
+    $(saveButton).append(iconSpan);
+
     $(saveButton).click(function() {
-        var text = $("#userinput").val();
-        console.log(text)
-        userEvents.push(JSON.stringify(text));
-        localStorage.setItem("userEvents", JSON.stringify(userEvents)); 
-        eventInput.remove();
-        textArea.textContent = "text"
+        textArea.value = (textArea.target).value;
+        console.log(textArea.val)
+        // var text = ;
+        
+        // userEvents.push(JSON.stringify(text));
+        // localStorage.setItem("userEvents", JSON.stringify(userEvents));
+        // return text;
     })    
 
     // color code the text area according to where we are in the day 
@@ -76,4 +64,4 @@ for (var i=0; i<hours.length; i++){
     } else {
         $(textArea).addClass("present")
     }
-}
+};
