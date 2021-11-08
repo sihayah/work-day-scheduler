@@ -8,7 +8,7 @@ new Array(9).fill().map((acc, index) => {
 
 // generate heading stating date and time at bottom of header
 
-var today = moment.utc().format("[Today is] dddd h:mmA"); ;
+var today = moment().format("[Today is] dddd h:mmA"); ;
 $("#currentDay").text(today);
 // generate rows
 
@@ -47,13 +47,6 @@ for (var i=0; i<hours.length; i++){
     $(saveButton).append(iconSpan);
 
     $(saveButton).click(function() {
-        textArea.value = (textArea.target).value;
-        console.log(textArea.val)
-        // var text = ;
-        
-        // userEvents.push(JSON.stringify(text));
-        // localStorage.setItem("userEvents", JSON.stringify(userEvents));
-        // return text;
     })    
 
     // color code the text area according to where we are in the day 
